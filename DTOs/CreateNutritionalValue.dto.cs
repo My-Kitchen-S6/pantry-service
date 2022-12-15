@@ -1,11 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
-namespace pantry_service.Models
+namespace pantry_service.DTOs
 {
-    public class NutritionalValue
+    public class CreateNutritionalValue
     {
-        [Required]
-        public int Id { get; set; }
         public int IngredientId { get; set; }
         public double Calories { get; set; }
         public double Fat { get; set; }

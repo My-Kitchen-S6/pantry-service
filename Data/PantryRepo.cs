@@ -49,6 +49,11 @@ namespace pantry_service.Data
             return _context.Users.FirstOrDefault(i => i.Auth0Id == auth0Id);
         }
 
+        public User GetUserById(int id)
+        {
+            return _context.Users.FirstOrDefault(i => i.Id == id);
+        }
+
         public IEnumerable<Ingredient> getAllIngredients(int userId)
         {
             return _context.Ingredients
@@ -64,6 +69,16 @@ namespace pantry_service.Data
         public void CreateIngredient(Ingredient ingredient)
         {
             _context.Ingredients.Add(ingredient);
+        }
+
+        public void CreateNutritionalValue(NutritionalValue nutritionalValue)
+        {
+            _context.NutritionalValues.Add(nutritionalValue);
+        }
+
+        public NutritionalValue GetNutritionalValue(int nutritionalValueId)
+        {
+            return _context.NutritionalValues.FirstOrDefault(i => i.IngredientId == nutritionalValueId);
         }
     }
 }

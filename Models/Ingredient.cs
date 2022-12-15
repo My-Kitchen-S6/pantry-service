@@ -7,6 +7,7 @@ namespace pantry_service.Models
     public class Ingredient
     {
         [Required] 
+        [Key]
         public int Id { get; set; }
         
         [Required]

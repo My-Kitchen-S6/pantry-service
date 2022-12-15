@@ -18,10 +18,18 @@ namespace pantry_service.Data
         
         User GetUserByAuth0Id(string auth0Id);
         
+        User GetUserById(int id);
+        
         //Pantry
         IEnumerable<Ingredient> getAllIngredients(int userId);
         Ingredient getIngredient(int userId, int IngredientId);
 
         void CreateIngredient(Ingredient ingredient);
+
+        void CreateNutritionalValue(NutritionalValue nutritionalValue);
+
+        NutritionalValue GetNutritionalValue(int nutritionalValueId);
+        
+        
     }
 }

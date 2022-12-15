@@ -8,11 +8,7 @@ namespace pantry_service.Models
         [Key]
         [Required]
         public int Id { get; set; }
-        
-        [Required]
         public int ExternalId { get; set; }
-        
-        [Required]
         public string Auth0Id { get; set; }
         
         public string UserName { get; set; }

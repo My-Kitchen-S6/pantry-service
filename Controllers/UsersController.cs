@@ -9,6 +9,7 @@ using pantry_service.Models;
 
 namespace pantry_service.Controllers
 {
+    [ApiController]
     public class UsersController : ControllerBase
     {
         private readonly IPantryRepo _repository;
@@ -20,12 +21,20 @@ namespace pantry_service.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("users/all", Name = "GetAllUsers")]
+        [HttpGet("pantry/users/all", Name = "GetAllUsers")]
         public ActionResult<IEnumerable<ReadUser>> GetUsers()
         {
             var userItems = _repository.GetAllUsers();
 
             return Ok(_mapper.Map<IEnumerable<ReadUser>>(userItems));
+        }
+        
+        [HttpGet("pantry/users/{id}", Name = "GetUser")]
+        public ActionResult<ReadUser> GetUser(int id)
+        {
+            var userItem = _repository.GetUserById(id);
+
+            return Ok(_mapper.Map<ReadUser>(userItem));
         }
 
 
