@@ -38,20 +38,18 @@ namespace pantry_service
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "pantry_service", Version = "v1"});
             });
             
-            // if (_env.IsProduction())
-            // {
-            //     var connectionString = Configuration["mysqlconnection:connectionString2"];
-            //
-            //     services.AddDbContext<AppDbContext>(opt =>
-            //         // opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
-            //         opt.UseMySQL(connectionString));
-            // }
-            // else
-            // {
+            if (_env.IsProduction())
+            {
+                 Console.WriteLine("--> Using MySQL server Db");
+                 services.AddDbContext<AppDbContext>(opt =>
+                    opt.UseMySQL(Configuration.GetConnectionString("PantryServiceDB")));
+            }
+            else
+            {
                 Console.WriteLine("--> Using InMemory Db");
                 services.AddDbContext<AppDbContext>(opt =>
                     opt.UseInMemoryDatabase("InMemory"));
-          //  }
+            }
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
@@ -71,7 +69,7 @@ namespace pantry_service
             app.UseRouting();
 
             app.UseAuthorization();
-          //  PrepDb.PrepPopulation(app, env.IsProduction());
+            PrepDb.PrepPopulation(app, env.IsProduction());
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
