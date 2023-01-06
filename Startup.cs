@@ -12,7 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using pantry_service.AsyncDataServices;
 using pantry_service.Data;
+using pantry_service.EventProcessing;
 
 namespace pantry_service
 {
@@ -51,6 +53,8 @@ namespace pantry_service
                     opt.UseInMemoryDatabase("InMemory"));
             }
 
+            services.AddHostedService<MessageBusSubscriber>();
+            services.AddSingleton<IEventProcessor, EventProcessor>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 

@@ -1,7 +1,7 @@
 namespace pantry_service.EventProcessing
 {
-    public class IEventProcessor
+    public interface IEventProcessor
     {
-        
+        void ProcessEvent(string message);
     }
 }

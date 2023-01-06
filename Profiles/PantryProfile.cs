@@ -19,6 +19,9 @@ namespace pantry_service.Profiles
             CreateMap<ReadIngredient, Ingredient>();
             CreateMap<Ingredient, ReadIngredient>();
             CreateMap<CreateIngredient, Ingredient>();
+
+            CreateMap<PublishedUser, User>()
+                .ForMember(dest => dest.ExternalId, opt => opt.MapFrom(src => src.Id));
         }
     }
 }
